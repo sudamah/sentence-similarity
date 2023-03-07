@@ -22,7 +22,7 @@ def get_embeddings(filename):
     return df_embedding
 
 
-def closest_lyrics(inp, filename):
+def get_similarity_score(inp, filename):
     data = get_embeddings(filename)
     inp_vector = model.encode(inp)
     s = data['embeddings'].apply(
@@ -35,4 +35,4 @@ if __name__ == '__main__':
 
     filename = 'lyrics.csv'     # csv file name
 
-    print(closest_lyrics('thinking about you', filename))
+    print(get_similarity_score('thinking about you', filename))
