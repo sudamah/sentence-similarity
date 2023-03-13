@@ -50,13 +50,18 @@ def load_data(filepath):
 
 def similarity_score(sent_list, model, tokenizer):
     """
-    It takes a list of sentences, tokenizes them, and then calculates the cosine similarity between each
-    sentence
+    We take a list of sentences, tokenize them, and then feed them into the model.     
+    The model outputs a tensor of shape (number of sentences, 768).     
+    We then calculate the cosine similarity between each sentence and every other sentence.     
+    The result is a matrix of shape (number of sentences, number of sentences).     
+    The diagonal of this matrix will be 1.0, since each sentence is perfectly similar to itself.     
+    The off-diagonal values will be between 0 and 1, with higher values indicating greater similarity
 
-    :param sent_list: list of sentences
+    :param sent_list: a list of sentences
+    :param model: the BERT model
+    :param tokenizer: the tokenizer object that we created earlier
     :return: A similarity matrix
     """
-
     # initialize dictionary that will contain tokenized sentences
     tokens = {'input_ids': [], 'attention_mask': []}
 
